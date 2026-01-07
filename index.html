@@ -12,8 +12,82 @@
 </head>
 
 <body>
-    <main>
-        <div class="container mt-4">
+        <div class="container py-4">
+    <!-- botón crear -->
+    <button  id="createTask" class="btn  btn-outline-danger mb-4">
+      + Crear tarea
+    </button>
+
+    <!-- FILA DE COLUMNAS -->
+    <div class="row justify-content-center gap-3">
+
+      <!-- Task list -->
+      <div class="col-md-3">
+        <div class="card h-100">
+          <div class="card-header text-center fw-bold">Task list</div>
+          <div class="card-body" id="taskList">
+
+            <div class="border rounded p-2">
+              <input class="form-control mb-2" placeholder="Task">
+
+              <div class="d-flex gap-2 mb-2">
+                <button class="btn btn-sm btn-secondary">✏️</button>
+                <button class="btn btn-sm btn-danger">X</button>
+              </div>
+
+              <p class="mb-2">lorem</p>
+
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-dark">&larr;</button>
+                <button class="btn btn-sm btn-outline-dark">&rarr;</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Doing -->
+      <div class="col-md-3">
+        <div class="card h-100">
+          <div class="card-header text-center fw-bold">Doing</div>
+          <div class="card-body" id="doing"></div>
+        </div>
+      </div>
+
+      <!-- Done -->
+      <div class="col-md-3">
+        <div class="card h-100">
+          <div class="card-header text-center fw-bold">Done</div>
+          <div class="card-body" id="done"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FILA INFERIOR -->
+    <!-- misma estructura del grid -->
+    <div class="row justify-content-center mt-3">
+
+      <!-- espacio Task list -->
+      <div class="col-md-3"></div>
+
+      <!-- espacio Doing -->
+      <div class="col-md-3"></div>
+
+      <!-- papelera alineada con Done -->
+      <div class="col-md-3 text-end">
+        <button class="btn btn-danger">
+          🗑️ Papelera
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+        <div class="container mt-4" id="taskForm">
+            <form action="" class="createForm">
             <div class="mb-3">
                 <label class="form-label">Nombre del proyecto</label>
                 <input type="email" class="form-control" placeholder="Ingrese el nombre de la nueva tarea">
@@ -30,10 +104,9 @@
                 <option value="2">medio</option>
                 <option value="3">bajo</option>
             </select>
-
+            </form>
         </div>
 
-    </main>
 
     <!-- Bootstrap JS (opcional si usas componentes interactivos) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

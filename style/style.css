@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.container{
+#taskForm{
     margin: auto;
     width: 50%;
     background-color: rgb(255, 255, 255);
@@ -12,9 +12,10 @@
     padding: 2rem;
     background: linear-gradient(rgb(211, 108, 108), rgb(255, 183, 192));
     transition: all 0.6s;
+    display: none;
 }
 
-.container:hover{
+#taskForm:hover{
     transform: translateY(-7px);
     box-shadow: 0 4px 20px rgba(11, 50, 58, 0.15);
 }
