@@ -4,115 +4,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TaskFlow SPA</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/style.css">
+
+    <style>
+        /* Formulario oculto por defecto */
+        #taskForm {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-        <div class="container py-4">
-    <!-- botón crear -->
-    <button  id="createTask" class="btn  btn-outline-danger mb-4">
-      + Crear tarea
-    </button>
+    <div class="container py-4" id="taskPanel">
+        <!-- botón crear -->
+        <button id="createTask" class="btn btn-primary mb-4">
+            + Crear tarea
+        </button>
 
-    <!-- FILA DE COLUMNAS -->
-    <div class="row justify-content-center gap-3">
+        <!-- FILA DE COLUMNAS -->
+        <div class="row justify-content-center gap-3">
 
-      <!-- Task list -->
-      <div class="col-md-3">
-        <div class="card h-100">
-          <div class="card-header text-center fw-bold">Task list</div>
-          <div class="card-body" id="taskList">
+            <!-- Task list -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-header text-center fw-bold">Task list</div>
+                    <div class="card-body" id="taskList">
+                        <div class="border rounded p-2">
+                            <input class="form-control mb-2" placeholder="Task">
 
-            <div class="border rounded p-2">
-              <input class="form-control mb-2" placeholder="Task">
+                            <div class="d-flex gap-2 mb-2">
+                                <button class="btn btn-sm btn-secondary">✏️</button>
+                                <button class="btn btn-sm btn-danger">X</button>
+                            </div>
 
-              <div class="d-flex gap-2 mb-2">
-                <button class="btn btn-sm btn-secondary">✏️</button>
-                <button class="btn btn-sm btn-danger">X</button>
-              </div>
+                            <p class="mb-2">lorem</p>
 
-              <p class="mb-2">lorem</p>
-
-              <div class="d-flex gap-2">
-                <button class="btn btn-sm btn-outline-dark">&larr;</button>
-                <button class="btn btn-sm btn-outline-dark">&rarr;</button>
-              </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-dark">&larr;</button>
+                                <button class="btn btn-sm btn-outline-dark">&rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-          </div>
-        </div>
-      </div>
+            <!-- Doing -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-header text-center fw-bold">Doing</div>
+                    <div class="card-body" id="doing"></div>
+                </div>
+            </div>
 
-      <!-- Doing -->
-      <div class="col-md-3">
-        <div class="card h-100">
-          <div class="card-header text-center fw-bold">Doing</div>
-          <div class="card-body" id="doing"></div>
-        </div>
-      </div>
+            <!-- Done -->
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-header text-center fw-bold">Done</div>
+                    <div class="card-body" id="done"></div>
+                </div>
+            </div>
 
-      <!-- Done -->
-      <div class="col-md-3">
-        <div class="card h-100">
-          <div class="card-header text-center fw-bold">Done</div>
-          <div class="card-body" id="done"></div>
         </div>
-      </div>
 
+        <!-- FILA INFERIOR -->
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3 text-end">
+                <button class="btn btn-danger">
+                    🗑️ Papelera
+                </button>
+            </div>
+        </div>
     </div>
 
-    <!-- FILA INFERIOR -->
-    <!-- misma estructura del grid -->
-    <div class="row justify-content-center mt-3">
-
-      <!-- espacio Task list -->
-      <div class="col-md-3"></div>
-
-      <!-- espacio Doing -->
-      <div class="col-md-3"></div>
-
-      <!-- papelera alineada con Done -->
-      <div class="col-md-3 text-end">
-        <button class="btn btn-danger">
-          🗑️ Papelera
-        </button>
-      </div>
-
-    </div>
-
-  </div>
-
-        <div class="container mt-4" id="taskForm">
-            <form action="" class="createForm">
+    <!-- FORMULARIO -->
+    <div class="container mt-4" id="taskForm">
+        <form class="createForm">
             <div class="mb-3">
                 <label class="form-label">Nombre del proyecto</label>
-                <input type="email" class="form-control" placeholder="Ingrese el nombre de la nueva tarea">
+                <input type="text" class="form-control" placeholder="Ingrese el nombre de la nueva tarea">
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Descripcion</label>
-                <textarea class="form-control" rows="3" placeholder="Empeza acaaaa"></textarea>
+                <label class="form-label">Descripción</label>
+                <textarea class="form-control" rows="3" placeholder="Empieza aquí..."></textarea>
             </div>
 
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select mb-3" aria-label="Nivel de urgencia">
                 <option selected>Nivel de urgencia</option>
-                <option value="1">alto</option>
-                <option value="2">medio</option>
-                <option value="3">bajo</option>
+                <option value="1">Alto</option>
+                <option value="2">Medio</option>
+                <option value="3">Bajo</option>
             </select>
-            </form>
-        </div>
 
+            <button type="submit" class="btn btn-outline-danger">Guardar</button>
+            <button type="button" id="cancelForm" class="btn btn-secondary">Cancelar</button>
+        </form>
+    </div>
 
-    <!-- Bootstrap JS (opcional si usas componentes interactivos) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HoA5Y6v1eH0V3Gzdh0dX8GZFODdgNpTi27C/7fyqCkCmZJLdnOjFkWDXLI4YAl4k"
         crossorigin="anonymous"></script>
 
+    <!-- SPA Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const createTaskBtn = document.getElementById('createTask');
+            const taskPanel = document.getElementById('taskPanel');
+            const taskForm = document.getElementById('taskForm');
+            const cancelBtn = document.getElementById('cancelForm');
+
+            // Mostrar el formulario y ocultar el panel de tareas
+            createTaskBtn.addEventListener('click', function () {
+                taskPanel.style.display = 'none';
+                taskForm.style.display = 'block';
+            });
+
+            // Cancelar: ocultar formulario y mostrar panel de tareas
+            cancelBtn.addEventListener('click', function () {
+                taskForm.style.display = 'none';
+                taskPanel.style.display = 'block';
+            });
+
+            // Evitar que el form recargue la página al enviar
+            taskForm.querySelector('form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('Aquí podrías guardar la tarea y volver al panel.');
+                taskForm.style.display = 'none';
+                taskPanel.style.display = 'block';
+            });
+        });
+    </script>
 </body>
 
 </html>
