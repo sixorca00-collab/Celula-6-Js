@@ -31,7 +31,7 @@
             <!-- Task list -->
             <div class="col-md-3">
                 <div class="card h-100">
-                    <div class="card-header text-center fw-bold">Task list</div>
+                    <div class="card-header text-center fw-bold"id="card-head">Task list</div>
                     <div class="card-body" id="taskList">
                         <div class="border rounded p-2">
                             <input class="form-control mb-2" placeholder="Task">
@@ -55,7 +55,7 @@
             <!-- Doing -->
             <div class="col-md-3">
                 <div class="card h-100">
-                    <div class="card-header text-center fw-bold">Doing</div>
+                    <div class="card-header text-center fw-bold" id="card-head">Doing</div>
                     <div class="card-body" id="doing"></div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
             <!-- Done -->
             <div class="col-md-3">
                 <div class="card h-100">
-                    <div class="card-header text-center fw-bold">Done</div>
+                    <div class="card-header text-center fw-bold"id="card-head">Done</div>
                     <div class="card-body" id="done"></div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-3"></div>
             <div class="col-md-3 text-end">
-                <button class="btn btn-danger">
+                <button class="btn btn-danger" id="openTrash">
                     🗑️ Papelera
                 </button>
             </div>
@@ -86,7 +86,7 @@
     <div class="container mt-4" id="taskForm">
         <form class="createForm">
             <div class="mb-3">
-                <label class="form-label">Nombre del proyecto</label>
+                <label class="form-label">Nombre de la tarea</label>
                 <input type="text" class="form-control" placeholder="Ingrese el nombre de la nueva tarea">
             </div>
 
@@ -106,6 +106,18 @@
             <button type="button" id="cancelForm" class="btn btn-secondary">Cancelar</button>
         </form>
     </div>
+    <!-- Modal de Papelera -->
+<div id="trashModal">
+    <div>
+        <h5>Papelera</h5>
+        <div id="trashContent">
+            <p>No hay tareas eliminadas.</p>
+        </div>
+        <div class="text-end mt-3">
+            <button id="closeTrash" class="btn btn-outline-danger">Cerrar</button>
+        </div>
+    </div>
+</div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -113,34 +125,7 @@
         crossorigin="anonymous"></script>
 
     <!-- SPA Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const createTaskBtn = document.getElementById('createTask');
-            const taskPanel = document.getElementById('taskPanel');
-            const taskForm = document.getElementById('taskForm');
-            const cancelBtn = document.getElementById('cancelForm');
-
-            // Mostrar el formulario y ocultar el panel de tareas
-            createTaskBtn.addEventListener('click', function () {
-                taskPanel.style.display = 'none';
-                taskForm.style.display = 'block';
-            });
-
-            // Cancelar: ocultar formulario y mostrar panel de tareas
-            cancelBtn.addEventListener('click', function () {
-                taskForm.style.display = 'none';
-                taskPanel.style.display = 'block';
-            });
-
-            // Evitar que el form recargue la página al enviar
-            taskForm.querySelector('form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                alert('Aquí podrías guardar la tarea y volver al panel.');
-                taskForm.style.display = 'none';
-                taskPanel.style.display = 'block';
-            });
-        });
-    </script>
+    <script src="./js/task.js"></script>
 </body>
 
 </html>
