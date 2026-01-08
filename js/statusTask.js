@@ -3,7 +3,7 @@ const doing = document.getElementById("doing");
 const done = document.getElementById("done");
 
 // Dibuja botones según estado
-function updateButtons(task) {
+function updateButtons(task) { //Crea funciones para usarla despues en el proceso de mover
   const actions = task.querySelector(".actions");
   const state = task.dataset.state;
 
