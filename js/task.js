@@ -46,30 +46,28 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ===============================
     Eliminar tareas → Papelera
      =============================== */
-  function attachDeleteButtons() {
-    const deleteButtons = document.querySelectorAll('.deleteTask');
+  document.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("deleteTask")) return;
 
-    deleteButtons.forEach(button => {
-      button.onclick = (e) => {
-        const taskDiv = e.target.closest('.task-item');
-        if (!taskDiv) return;
+    const taskDiv = e.target.closest(".task-item");
+    if (!taskDiv) return;
 
-        const trashContent = document.getElementById('trashContent');
-        if (!trashContent) return;
+    const trashContent = document.getElementById("trashContent");
+    if (!trashContent) return;
 
-        const clonedTask = taskDiv.cloneNode(true);
+    const clonedTask = taskDiv.cloneNode(true);
 
-        // quitar botones dentro de la papelera
-      
+    // quitar botones dentro de la papelera
+    clonedTask.querySelectorAll("button").forEach(btn => btn.remove());
 
-        const emptyMessage = trashContent.querySelector('p');
-        if (emptyMessage) emptyMessage.remove();
+    // quitar mensaje "No hay tareas"
+    const emptyMessage = trashContent.querySelector("p");
+    if (emptyMessage) emptyMessage.remove();
 
-        trashContent.appendChild(clonedTask);
-        taskDiv.remove();
-      };
-    });
-  }
+    trashContent.appendChild(clonedTask);
 
-  attachDeleteButtons();
+    // eliminar del tablero
+    taskDiv.remove();
+  });
+
 });

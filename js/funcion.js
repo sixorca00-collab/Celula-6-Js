@@ -92,38 +92,17 @@ if (typeof updateButtons === "function") {
   updateButtons(card);
 }
 
-  
+// re-adjuntar delete (archivo del compañero)
+if (typeof attachDeleteButtons === "function") {
+  attachDeleteButtons();
 }
 
-/* ================= DELETE ================= */
-
-document.addEventListener("click", (e) => {
-    if (!e.target.classList.contains("deleteTask")) return;
-
-    const card = e.target.closest(".task-item");
-    if (!card) return;
-
-    const id = card.dataset.id;
-
-    // eliminar del array
-    tasks = tasks.filter(task => task.id !== id);
-    saveTasks();
-
-    // eliminar SOLO del DOM
-    card.remove();
-});
-
-/* ================= CARGAR DESDE STORAGE ================= */
-
-tasks.forEach(task => {
-    createTaskCard(task);
-});
+}
 
 
 
 
 
-//      =====================================
-//                  STATUS TASK
-//      =====================================
+
+
 
