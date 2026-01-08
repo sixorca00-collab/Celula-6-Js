@@ -1,41 +1,57 @@
-   document.addEventListener('DOMContentLoaded', function () {
-            const createTaskBtn = document.getElementById('createTask');
-            const taskPanel = document.getElementById('taskPanel');
-            const taskForm = document.getElementById('taskForm');
-            const cancelBtn = document.getElementById('cancelForm');
+document.addEventListener('DOMContentLoaded', function () {
 
-            // Mostrar el formulario y ocultar el panel de tareas
-            createTaskBtn.addEventListener('click', function () {
-                taskPanel.style.display = 'none';
-                taskForm.style.display = 'block';
-            });
+    // === SPA: formulario ===
+    const createTaskBtn = document.getElementById('createTask');
+    const taskPanel = document.getElementById('taskPanel');
+    const taskForm = document.getElementById('taskForm');
+    const cancelBtn = document.getElementById('cancelForm');
 
-            // Cancelar: ocultar formulario y mostrar panel de tareas
-            cancelBtn.addEventListener('click', function () {
-                taskForm.style.display = 'none';
-                taskPanel.style.display = 'block';
-            });
-
-            // Evitar que el form recargue la página al enviar
-            taskForm.querySelector('form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                alert('Aquí podrías guardar la tarea y volver al panel.');
-                taskForm.style.display = 'none';
-                taskPanel.style.display = 'block';
-            });
-        });
-    document.addEventListener('DOMContentLoaded',function(){
-        const openTrashBtn = document.getElementById("openTrash");
-        const trashModal = document.getElementById("trashModal");
-        const closeTrashBtn = document.getElementById("closeTrash");
-
-        openTrashBtn.addEventListener('click', ()=>{
-            trashModal.style.display = 'flex'; //pasamos a mostrar el modal
-
-        });
-        closeTrashBtn.addEventListener('click',() =>{
-            trashModal.style.display = 'none'; //para cerrarlo
-        })
-
+    createTaskBtn.addEventListener('click', () => {
+        taskPanel.style.display = 'none';
+        taskForm.style.display = 'block';
     });
 
+    cancelBtn.addEventListener('click', () => {
+        taskForm.style.display = 'none';
+        taskPanel.style.display = 'block';
+    });
+
+    taskForm.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        taskForm.style.display = 'none';
+        taskPanel.style.display = 'block';
+    });
+
+    // === Modal Papelera ===
+    const openTrashBtn = document.getElementById("openTrash");
+    const trashModal = document.getElementById("trashModal");
+    const closeTrashBtn = document.getElementById("closeTrash");
+
+    openTrashBtn.addEventListener('click', () => {
+        trashModal.style.display = 'flex';
+    });
+
+    closeTrashBtn.addEventListener('click', () => {
+        trashModal.style.display = 'none';
+    });
+
+    // === Eliminar tareas → Papelera ===
+    const deleteButtons = document.querySelectorAll('.deleteTask');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const taskDiv = e.target.closest('.border');
+            if (!taskDiv) return;
+
+            const clonedTask = taskDiv.cloneNode(true);
+            const trashContent = document.getElementById('trashContent');
+
+            const emptyMessage = trashContent.querySelector('p');
+            if (emptyMessage) emptyMessage.remove();
+
+            trashContent.appendChild(clonedTask);
+            taskDiv.remove();
+        });
+    });
+
+});
