@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#taskForm{
+    margin-top: 3rem;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    padding: 2rem;
+    background: linear-gradient(rgb(211, 108, 108), rgb(255, 183, 192));
+    transition: all 0.6s;
+    display: none;
+}
+
+#taskForm:hover{
+    transform: translateY(-7px);
+    box-shadow: 0 4px 20px rgba(11, 50, 58, 0.15);
+}
+#taskPanel{
+    margin-top: 4rem;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    padding: 2rem;
+    background: linear-gradient(rgb(211, 108, 108), rgb(255, 183, 192));
+    transition: all 0.6s;
+}
+#card-head{
+    background-color: crimson;
+    color: white;
+    border: 1px solid crimson;
+}
+#trashModal {
+    display: none;
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    display: none; /* oculto por defecto */
+}
+#trashModal > div {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-height: 80%;
+    overflow-y: auto;
+}
