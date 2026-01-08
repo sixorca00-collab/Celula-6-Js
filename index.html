@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TaskFlow SPA</title>
-
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./style/style.css">
 
@@ -53,10 +51,10 @@
         <div class="card h-100">
           <div class="card-header text-center fw-bold">Task list</div>
 
-          <!-- 🔧 ID requerido por statusTask.js -->
+          <!-- ID requerido por statusTask.js -->
           <div class="card-body" id="taskList">
 
-            <!-- 🔧 class task + data-state -->
+            <!--  class task + data-state -->
             <div class="border rounded p-2 task-item task mb-2" data-state="pendiente">
 
               <div class="d-flex gap-2 mb-2 align-items-center">
@@ -81,7 +79,6 @@
                 </div>
               </div>
 
-              <!-- 🔧 contenedor requerido por statusTask.js -->
               <div class="d-flex gap-2 actions">
                 <button class="btn btn-sm btn-outline-dark moveLeft">&larr;</button>
                 <button class="btn btn-sm btn-outline-dark moveRight">&rarr;</button>
@@ -122,7 +119,7 @@
 
   </div>
 
-  <!-- ================= FORMULARIO (ORIGINAL) ================= -->
+ 
   <div class="container mt-4" id="taskForm">
     <form id="formMain" class="createForm">
 
@@ -154,7 +151,7 @@
     </form>
   </div>
 
-  <!-- ================= PAPELERA (ORIGINAL) ================= -->
+<!--Papelera-->
   <div id="trashModal">
     <div>
       <h5>Papelera</h5>
@@ -171,7 +168,7 @@
     </div>
   </div>
 
-  <!-- ================= SCRIPTS ================= -->
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./js/statusTask.js"></script>
   <script src="./js/funcion.js"></script>
