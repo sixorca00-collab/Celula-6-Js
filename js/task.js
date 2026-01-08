@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ===============================
-     SPA: formulario (OPCIONAL)
+    SPA: formulario (OPCIONAL)
      =============================== */
   const createTaskBtn = document.getElementById('createTask');
   const taskPanel = document.getElementById('taskPanel');
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ===============================
-     Modal Papelera
+    Modal Papelera
      =============================== */
   const openTrashBtn = document.getElementById("openTrash");
   const trashModal = document.getElementById("trashModal");
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ===============================
-     Eliminar tareas → Papelera
+    Eliminar tareas → Papelera
      =============================== */
   function attachDeleteButtons() {
     const deleteButtons = document.querySelectorAll('.deleteTask');
