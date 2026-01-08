@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Board</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .task[data-state="pendiente"] {
+      border-left: 5px solid #ffc107;
+    }
+
+    .task[data-state="proceso"] {
+      border-left: 5px solid #0d6efd;
+      background-color: #eef4ff;
+    }
+
+    .task[data-state="completada"] {
+      border-left: 5px solid #198754;
+      background-color: #e9f7ef;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+<div class="container py-4">
+  <div class="row justify-content-center gap-3">
+
+    <!-- PENDIENTE -->
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-header text-center fw-bold">Task list</div>
+        <div class="card-body" id="taskList">
+
+          <div class="task border rounded p-2 mb-2" data-state="pendiente">
+            <p class="mb-2">Tarea</p>
+            <div class="actions d-flex gap-2"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- EN PROCESO -->
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-header text-center fw-bold">Doing</div>
+        <div class="card-body" id="doing">
+
+          <div class="task border rounded p-2 mb-2" data-state="proceso">
+            <p class="mb-2">Tarea</p>
+            <div class="actions d-flex gap-2"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPLETADA -->
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-header text-center fw-bold">Done</div>
+        <div class="card-body" id="done">
+
+          <div class="task border rounded p-2 mb-2" data-state="completada">
+            <p class="mb-2">Tarea</p>
+            <div class="actions d-flex gap-2"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="./js/statusTask.js"></script>
+</body>
+</html>
