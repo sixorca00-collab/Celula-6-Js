@@ -1,15 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-
-  /* ===============================
-    SPA: formulario (OPCIONAL)
-     =============================== */
+// Funcion de crear y el form
   const createTaskBtn = document.getElementById('createTask');
   const taskPanel = document.getElementById('taskPanel');
   const taskForm = document.getElementById('taskForm');
   const cancelBtn = document.getElementById('cancelForm');
   const form = document.getElementById('formMain');
 
-  // 👉 Solo se activa si el formulario existe
+  // Solo se activa si el formulario existe
   if (createTaskBtn && taskPanel && taskForm && cancelBtn && form) {
 
     createTaskBtn.addEventListener('click', () => {
@@ -22,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
       taskPanel.style.display = 'block';
     });
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', (e) => { // e es una representacion de evento lo que hara sera definir el evento que ejecutara el codigo que le siga
       e.preventDefault();
       taskForm.style.display = 'none';
       taskPanel.style.display = 'block';
@@ -63,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const clonedTask = taskDiv.cloneNode(true);
 
         // quitar botones dentro de la papelera
-        clonedTask.querySelectorAll('button').forEach(b => b.remove());
+      
 
         const emptyMessage = trashContent.querySelector('p');
         if (emptyMessage) emptyMessage.remove();
