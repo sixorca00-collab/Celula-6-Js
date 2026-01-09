@@ -58,6 +58,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /* ================= FILTRO ================= */
+// Función para mostrar todas las tareas
+function mostrarTodasTareas() {
+  document.querySelectorAll(".task-item").forEach(t => {
+    t.style.display = "";
+  });
+}
 
 function filtrarPorPrioridad(prioridad) {
   document.querySelectorAll(".task-item").forEach(t => {
@@ -75,4 +81,9 @@ document.getElementById("comMedia").addEventListener("click", e => {
 
 document.getElementById("comBaja").addEventListener("click", e => {
   e.preventDefault(); filtrarPorPrioridad("3");
+});
+// NUEVO: Mostrar todas
+document.getElementById("comTodas").addEventListener("click", e => {
+  e.preventDefault();
+  mostrarTodasTareas();
 });
