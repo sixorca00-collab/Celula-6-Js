@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-// Funcion de crear y el form
+
+  // ================= FORMULARIO =================
   const createTaskBtn = document.getElementById('createTask');
   const taskPanel = document.getElementById('taskPanel');
   const taskForm = document.getElementById('taskForm');
   const cancelBtn = document.getElementById('cancelForm');
   const form = document.getElementById('formMain');
 
-  // Solo se activa si el formulario existe
   if (createTaskBtn && taskPanel && taskForm && cancelBtn && form) {
 
     createTaskBtn.addEventListener('click', () => {
@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', function () {
       taskPanel.style.display = 'block';
     });
 
-    form.addEventListener('submit', (e) => { // e es una representacion de evento lo que hara sera definir el evento que ejecutara el codigo que le siga
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
       taskForm.style.display = 'none';
       taskPanel.style.display = 'block';
     });
   }
 
- // T arjeta de papelera
+  // ================= PAPELERA =================
   const openTrashBtn = document.getElementById("openTrash");
   const trashModal = document.getElementById("trashModal");
   const closeTrashBtn = document.getElementById("closeTrash");
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  //Eliminaer tareas
+  // ================= ELIMINAR TAREAS =================
   document.addEventListener("click", (e) => {
     if (!e.target.classList.contains("deleteTask")) return;
 
@@ -52,18 +52,48 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!trashContent) return;
 
     const clonedTask = taskDiv.cloneNode(true);
-
-    // quitar botones dentro de la papelera
     clonedTask.querySelectorAll("button").forEach(btn => btn.remove());
 
-    // quitar mensaje "No hay tareas"
     const emptyMessage = trashContent.querySelector("p");
     if (emptyMessage) emptyMessage.remove();
 
     trashContent.appendChild(clonedTask);
-
-    // eliminar del tablero
     taskDiv.remove();
   });
 
+});
+
+/* ================= FILTRADO POR PRIORIDAD ================= */
+
+// Muestra solo las tareas cuya prioridad coincide
+function filtrarPorPrioridad(prioridad) {
+
+  const tareas = document.querySelectorAll(".task-item");
+
+  tareas.forEach(tarea => {
+
+    const prioridadTarea = tarea.dataset.priority;
+
+    if (prioridadTarea === prioridad) {
+      tarea.style.display = "";
+    } else {
+      tarea.style.display = "none";
+    }
+  });
+}
+
+// Eventos del dropdown
+document.getElementById("comAlta").addEventListener("click", (e) => {
+  e.preventDefault();
+  filtrarPorPrioridad("1");
+});
+
+document.getElementById("comMedia").addEventListener("click", (e) => {
+  e.preventDefault();
+  filtrarPorPrioridad("2");
+});
+
+document.getElementById("comBaja").addEventListener("click", (e) => {
+  e.preventDefault();
+  filtrarPorPrioridad("3");
 });

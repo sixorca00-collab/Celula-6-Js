@@ -13,60 +13,91 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 
   <link rel="stylesheet" href="./style/style.css" />
-
 </head>
 
 <body>
+
   <!-- HEADER -->
   <header class="bg-dark text-white py-3 shadow-sm mb-4">
     <div class="container d-flex justify-content-between align-items-center">
       <h1 class="h4 mb-0">TaskFlow</h1>
     </div>
   </header>
-  </main>
+
   <!-- PANEL PRINCIPAL -->
   <div class="container py-4" id="taskPanel">
-    <!-- Botón + Crear tarea -->
-    <button id="createTask" class="btn btn-primary mb-4 px-4 py-2">
-      + Crear tarea
-    </button>
 
+    <!-- BOTONES -->
+    <div class="row align-items-center mb-4">
+      <div class="col-auto">
+        <button id="createTask" class="btn btn-primary px-4 py-2">
+          + Crear tarea
+        </button>
+      </div>
+
+      <div class="col-auto">
+        <div class="dropdown">
+          <button class="btn btn-success dropdown-toggle px-4 py-2"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Filtrar
+          </button>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" id="comAlta">Alta</a></li>
+            <li><a class="dropdown-item" href="#" id="comMedia">Media</a></li>
+            <li><a class="dropdown-item" href="#" id="comBaja">Baja</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLEROS -->
     <div class="row justify-content-center gap-3">
+
       <!-- TASK LIST -->
       <div class="col-md-3 mb-4 min-height-350">
         <div class="card h-100">
           <div class="card-header text-center fw-bold">Task list</div>
           <div class="card-body" id="taskList">
-            <div class="border rounded p-2 task-item task mb-2" data-state="pendiente">
+
+            <!-- TAREA EJEMPLO -->
+            <div class="border rounded p-2 task-item task mb-2"
+                 data-state="pendiente"
+                 data-priority="1">
+
               <div class="d-flex gap-3 mb-2 align-items-center">
-                <p id="readNameTask" class="title mb-0">Crear Tarea</p>
+                <p class="title mb-0">Crear Tarea</p>
                 <button class="btn btn-sm btn-secondary editTask">✏️</button>
                 <button class="btn btn-sm btn-danger deleteTask">X</button>
               </div>
 
-              <div class="accordion" id="accordionExample">
+              <div class="accordion">
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="accordion-button" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne">
                       description
                     </button>
                   </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                  <div id="collapseOne" class="accordion-collapse collapse show">
                     <div class="accordion-body">
-                      <p id="discriptionTask">
-                        la tarea consiste en mostrar que el panel con SPA, DOM, Sesion, Validaciones funcione.
+                      <p>
+                        la tarea consiste en mostrar que el panel con SPA, DOM,
+                        Sesion, Validaciones funcione.
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Botones de dirección separados del acordeón -->
               <div class="d-flex gap-3 actions mt-3">
                 <button class="btn btn-sm btn-outline-dark moveLeft">&larr;</button>
                 <button class="btn btn-sm btn-outline-dark moveRight">&rarr;</button>
               </div>
+
             </div>
           </div>
         </div>
@@ -89,7 +120,7 @@
       </div>
     </div>
 
-    <!-- BOTÓN PAPELERA -->
+    <!-- PAPELERA -->
     <div class="row justify-content-center mt-4">
       <div class="col-md-9 text-end">
         <button class="btn btn-danger px-4 py-2" id="openTrash">
@@ -104,16 +135,15 @@
     <form id="formMain" class="createForm">
       <div class="mb-3">
         <label class="form-label">Nombre de la tarea:</label>
-        <input id="nameTask" type="text" class="form-control" placeholder="Ingrese el nombre de la nueva tarea"
-          required />
+        <input id="nameTask" type="text" class="form-control" required />
       </div>
 
       <div class="mb-3">
         <label class="form-label">Descripción:</label>
-        <textarea id="description" class="form-control" rows="3" placeholder="Empieza aquí..." required></textarea>
+        <textarea id="description" class="form-control" rows="3" required></textarea>
       </div>
 
-      <select id="selecPriority" class="form-select mb-3" aria-label="Nivel de urgencia">
+      <select id="selecPriority" class="form-select mb-3">
         <option selected>Nivel de urgencia</option>
         <option value="1">Alto</option>
         <option value="2">Medio</option>
@@ -129,7 +159,7 @@
     </form>
   </div>
 
-  <!-- Papelera -->
+  <!-- MODAL PAPELERA -->
   <div id="trashModal">
     <div>
       <h5>Papelera</h5>
@@ -142,22 +172,11 @@
     </div>
   </div>
 
-  <main>
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/statusTask.js"></script>
+  <script src="./js/funcion.js"></script>
+  <script src="./js/task.js"></script>
 
-
-    <footer class="footer">
-      <div class="footer-content">
-        <p>© 2026 Nombre del Portal — Todos los derechos reservados</p>
-        <p>Hecho por: celula 6: Juan Olarte || Diego Lopez || Sebastian Mejia || Carlos Catano</p>
-      </div>
-    </footer>
-
-
-    <!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./js/statusTask.js"></script>
-    <script src="./js/funcion.js"></script>
-    <script src="./js/task.js"></script>
 </body>
-
 </html>
