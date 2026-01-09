@@ -1,18 +1,19 @@
+// ================= NODOS DEL DOM =================
 const taskList = document.getElementById("taskList");
 const doing = document.getElementById("doing");
 const done = document.getElementById("done");
 
+// ================= FUNCIONES AUXILIARES =================
+
 // Dibuja botones según estado
-function updateButtons(task) { //Crea funciones para usarla despues en el proceso de mover
+function updateButtons(task) {
   const actions = task.querySelector(".actions");
   const state = task.dataset.state;
 
   actions.innerHTML = "";
 
   if (state === "pendiente") {
-    actions.innerHTML = `
-      <button class="btn btn-sm btn-outline-dark btn-right">&rarr;</button>
-    `;
+    actions.innerHTML = `<button class="btn btn-sm btn-outline-dark btn-right">&rarr;</button>`;
   }
 
   if (state === "proceso") {
@@ -23,16 +24,39 @@ function updateButtons(task) { //Crea funciones para usarla despues en el proces
   }
 
   if (state === "completada") {
-    actions.innerHTML = `
-      <button class="btn btn-sm btn-outline-dark btn-left">&larr;</button>
-    `;
+    actions.innerHTML = `<button class="btn btn-sm btn-outline-dark btn-left">&larr;</button>`;
   }
 }
 
-// Inicializar tareas existentes
-document.querySelectorAll(".task").forEach(updateButtons);
+// Actualiza el estado en el array y localStorage
+function updateTaskState(task, newState) {
+  task.dataset.state = newState;
 
-// Delegación de eventos
+  const taskIndex = tasks.findIndex(t => t.id === task.dataset.id);
+  if (taskIndex !== -1) {
+    tasks[taskIndex].state = newState;
+    saveTasks();
+  }
+}
+
+// ================= ANIMACIÓN AL MOVER =================
+function moveTaskWithAnimation(task, targetColumn) {
+  // efecto inicial: desvanecer y levantar un poco
+  task.classList.add("move-anim");
+
+  // Esperar la animación antes de mover
+  setTimeout(() => {
+    task.classList.remove("move-anim");
+    targetColumn.appendChild(task);
+  }, 300); // duración coincide con CSS
+}
+
+// ================= INICIALIZAR TAREAS EXISTENTES =================
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".task").forEach(updateButtons);
+});
+
+// ================= DELEGACIÓN DE EVENTOS =================
 document.addEventListener("click", (e) => {
   const task = e.target.closest(".task");
   if (!task) return;
@@ -42,11 +66,11 @@ document.addEventListener("click", (e) => {
   // Avanzar
   if (e.target.classList.contains("btn-right")) {
     if (state === "pendiente") {
-      task.dataset.state = "proceso";
-      doing.appendChild(task);
+      moveTaskWithAnimation(task, doing);
+      updateTaskState(task, "proceso");
     } else if (state === "proceso") {
-      task.dataset.state = "completada";
-      done.appendChild(task);
+      moveTaskWithAnimation(task, done);
+      updateTaskState(task, "completada");
     }
     updateButtons(task);
   }
@@ -54,11 +78,11 @@ document.addEventListener("click", (e) => {
   // Retroceder
   if (e.target.classList.contains("btn-left")) {
     if (state === "proceso") {
-      task.dataset.state = "pendiente";
-      taskList.appendChild(task);
+      moveTaskWithAnimation(task, taskList);
+      updateTaskState(task, "pendiente");
     } else if (state === "completada") {
-      task.dataset.state = "proceso";
-      doing.appendChild(task);
+      moveTaskWithAnimation(task, doing);
+      updateTaskState(task, "proceso");
     }
     updateButtons(task);
   }
