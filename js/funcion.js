@@ -7,7 +7,7 @@ const taskList2 = document.getElementById("taskList");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-/* ================= UTILIDADES ================= */
+//utilidades
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -17,7 +17,7 @@ function generateId() {
     return crypto.randomUUID();
 }
 
-/* ================= CREATE ================= */
+//crear
 
 formMain.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -34,8 +34,7 @@ formMain.addEventListener("submit", (e) => {
     createTaskCard(task);
     formMain.reset();
 });
-
-/* ================= CREAR CARD ================= */
+//Crear card
 
 function createTaskCard(task) {
   const card = document.createElement("div");

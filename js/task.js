@@ -26,9 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ===============================
-    Modal Papelera
-     =============================== */
+ // T arjeta de papelera
   const openTrashBtn = document.getElementById("openTrash");
   const trashModal = document.getElementById("trashModal");
   const closeTrashBtn = document.getElementById("closeTrash");
@@ -43,9 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ===============================
-    Eliminar tareas → Papelera
-     =============================== */
+  //Eliminaer tareas
   document.addEventListener("click", (e) => {
     if (!e.target.classList.contains("deleteTask")) return;
 
