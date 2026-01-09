@@ -51,6 +51,16 @@
     width: 400px;
     max-height: 80%;
     overflow-y: auto;
+}
+.task-item {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.move-anim {
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
 
 
 
