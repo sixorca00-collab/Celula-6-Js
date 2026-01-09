@@ -7,7 +7,7 @@ const taskList2 = document.getElementById("taskList");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-/* ================= UTILIDADES ================= */
+//utilidades
 
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -17,7 +17,7 @@ function generateId() {
     return crypto.randomUUID();
 }
 
-/* ================= CREATE ================= */
+//crear
 
 formMain.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -34,8 +34,7 @@ formMain.addEventListener("submit", (e) => {
     createTaskCard(task);
     formMain.reset();
 });
-
-/* ================= CREAR CARD ================= */
+//Crear card
 
 function createTaskCard(task) {
   const card = document.createElement("div");
@@ -92,37 +91,10 @@ if (typeof updateButtons === "function") {
   updateButtons(card);
 }
 
-  
+// re-adjuntar delete (archivo del compañero)
+if (typeof attachDeleteButtons === "function") {
+  attachDeleteButtons();
 }
 
-/* ================= DELETE ================= */
+}
 
-document.addEventListener("click", (e) => {
-    if (!e.target.classList.contains("deleteTask")) return;
-
-    const card = e.target.closest(".task-item");
-    if (!card) return;
-
-    const id = card.dataset.id;
-
-    // eliminar del array
-    tasks = tasks.filter(task => task.id !== id);
-    saveTasks();
-
-    // eliminar SOLO del DOM
-    card.remove();
-});
-
-/* ================= CARGAR DESDE STORAGE ================= */
-
-tasks.forEach(task => {
-    createTaskCard(task);
-});
-
-
-
-
-
-//      =====================================
-//                  STATUS TASK
-//      =====================================

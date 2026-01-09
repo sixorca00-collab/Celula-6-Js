@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-// Funcion de crear y el form
+
+  // ================= FORMULARIO =================
   const createTaskBtn = document.getElementById('createTask');
   const taskPanel = document.getElementById('taskPanel');
   const taskForm = document.getElementById('taskForm');
   const cancelBtn = document.getElementById('cancelForm');
   const form = document.getElementById('formMain');
 
-  // Solo se activa si el formulario existe
   if (createTaskBtn && taskPanel && taskForm && cancelBtn && form) {
 
     createTaskBtn.addEventListener('click', () => {
@@ -19,16 +19,14 @@ document.addEventListener('DOMContentLoaded', function () {
       taskPanel.style.display = 'block';
     });
 
-    form.addEventListener('submit', (e) => { // e es una representacion de evento lo que hara sera definir el evento que ejecutara el codigo que le siga
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
       taskForm.style.display = 'none';
       taskPanel.style.display = 'block';
     });
   }
 
-  /* ===============================
-    Modal Papelera
-     =============================== */
+  // ================= PAPELERA =================
   const openTrashBtn = document.getElementById("openTrash");
   const trashModal = document.getElementById("trashModal");
   const closeTrashBtn = document.getElementById("closeTrash");
@@ -43,33 +41,60 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ===============================
-    Eliminar tareas → Papelera
-     =============================== */
-  function attachDeleteButtons() {
-    const deleteButtons = document.querySelectorAll('.deleteTask');
+  // ================= ELIMINAR TAREAS =================
+  document.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("deleteTask")) return;
 
-    deleteButtons.forEach(button => {
-      button.onclick = (e) => {
-        const taskDiv = e.target.closest('.task-item');
-        if (!taskDiv) return;
+    const taskDiv = e.target.closest(".task-item");
+    if (!taskDiv) return;
 
-        const trashContent = document.getElementById('trashContent');
-        if (!trashContent) return;
+    const trashContent = document.getElementById("trashContent");
+    if (!trashContent) return;
 
-        const clonedTask = taskDiv.cloneNode(true);
+    const clonedTask = taskDiv.cloneNode(true);
+    clonedTask.querySelectorAll("button").forEach(btn => btn.remove());
 
-        // quitar botones dentro de la papelera
-      
+    const emptyMessage = trashContent.querySelector("p");
+    if (emptyMessage) emptyMessage.remove();
 
-        const emptyMessage = trashContent.querySelector('p');
-        if (emptyMessage) emptyMessage.remove();
+    trashContent.appendChild(clonedTask);
+    taskDiv.remove();
+  });
 
-        trashContent.appendChild(clonedTask);
-        taskDiv.remove();
-      };
-    });
-  }
 
-  attachDeleteButtons();
+});
+
+/* ================= FILTRADO POR PRIORIDAD ================= */
+
+// Muestra solo las tareas cuya prioridad coincide
+function filtrarPorPrioridad(prioridad) {
+
+  const tareas = document.querySelectorAll(".task-item");
+
+  tareas.forEach(tarea => {
+
+    const prioridadTarea = tarea.dataset.priority;
+
+    if (prioridadTarea === prioridad) {
+      tarea.style.display = "";
+    } else {
+      tarea.style.display = "none";
+    }
+  });
+}
+
+// Eventos del dropdown
+document.getElementById("comAlta").addEventListener("click", (e) => {
+  e.preventDefault();
+  filtrarPorPrioridad("1");
+});
+
+document.getElementById("comMedia").addEventListener("click", (e) => {
+  e.preventDefault();
+  filtrarPorPrioridad("2");
+});
+
+document.getElementById("comBaja").addEventListener("click", (e) => {
+  e.preventDefault();
+  filtrarPorPrioridad("3");
 });

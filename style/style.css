@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 #taskForm{
     margin-top: 3rem;
     margin: auto;
@@ -50,4 +51,71 @@
     width: 400px;
     max-height: 80%;
     overflow-y: auto;
+}
+#taskForm {
+      display: none;
+    }
+
+    #trashModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #trashModal > div {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    /* Altura mínima para que el panel no se vea vacío */
+    .min-height-350 {
+      min-height: 350px;
+    }
+
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    margin-top: 40px;
+    font-size: 0.95rem;
+    width: 100%;
+    border-top: 2px solid var(--color-neon);
+    position: absolute;
+    bottom: 0px;
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+footer p {
+    margin: 5px 0;
+    opacity: 0.9;
+    transition: 0.3s ease;
+}
+
+footer p:hover {
+    opacity: 1;
+}
+
+footer a {
+    color: var(--color-neon);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: rgb(185, 180, 180);
 }
