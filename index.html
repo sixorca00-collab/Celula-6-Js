@@ -8,18 +8,12 @@
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-  
+
   <!-- Bootstrap Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 
   <link rel="stylesheet" href="./style/style.css" />
 
-  <style>
-    
-  </style>
 </head>
 
 <body>
@@ -27,10 +21,9 @@
   <header class="bg-dark text-white py-3 shadow-sm mb-4">
     <div class="container d-flex justify-content-between align-items-center">
       <h1 class="h4 mb-0">TaskFlow</h1>
-      <p>Hecho por: celula 6: Juan Olarte || Diego Lopez || Sebastian Mejia || Carlos Catano</p>
     </div>
   </header>
-
+  </main>
   <!-- PANEL PRINCIPAL -->
   <div class="container py-4" id="taskPanel">
     <!-- Botón + Crear tarea -->
@@ -54,22 +47,12 @@
               <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button
-                      class="accordion-button"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne"
-                      aria-expanded="true"
-                      aria-controls="collapseOne"
-                    >
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                       description
                     </button>
                   </h2>
-                  <div
-                    id="collapseOne"
-                    class="accordion-collapse collapse show"
-                    data-bs-parent="#accordionExample"
-                  >
+                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <p id="discriptionTask">
                         la tarea consiste en mostrar que el panel con SPA, DOM, Sesion, Validaciones funcione.
@@ -121,31 +104,16 @@
     <form id="formMain" class="createForm">
       <div class="mb-3">
         <label class="form-label">Nombre de la tarea:</label>
-        <input
-          id="nameTask"
-          type="text"
-          class="form-control"
-          placeholder="Ingrese el nombre de la nueva tarea"
-          required
-        />
+        <input id="nameTask" type="text" class="form-control" placeholder="Ingrese el nombre de la nueva tarea"
+          required />
       </div>
 
       <div class="mb-3">
         <label class="form-label">Descripción:</label>
-        <textarea
-          id="description"
-          class="form-control"
-          rows="3"
-          placeholder="Empieza aquí..."
-          required
-        ></textarea>
+        <textarea id="description" class="form-control" rows="3" placeholder="Empieza aquí..." required></textarea>
       </div>
 
-      <select
-        id="selecPriority"
-        class="form-select mb-3"
-        aria-label="Nivel de urgencia"
-      >
+      <select id="selecPriority" class="form-select mb-3" aria-label="Nivel de urgencia">
         <option selected>Nivel de urgencia</option>
         <option value="1">Alto</option>
         <option value="2">Medio</option>
@@ -174,13 +142,22 @@
     </div>
   </div>
 
-  
+  <main>
 
-  <!-- Bootstrap Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./js/statusTask.js"></script>
-  <script src="./js/funcion.js"></script>
-  <script src="./js/task.js"></script>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>© 2025 Nombre del Portal — Todos los derechos reservados</p>
+        <p>Hecho por: celula 6: Juan Olarte || Diego Lopez || Sebastian Mejia || Carlos Catano</p>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/statusTask.js"></script>
+    <script src="./js/funcion.js"></script>
+    <script src="./js/task.js"></script>
 </body>
 
 </html>
