@@ -1,11 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  // === SPA: formulario ===
+  /* ================= FORMULARIO ================= */
   const createTaskBtn = document.getElementById('createTask');
   const taskPanel = document.getElementById('taskPanel');
   const taskForm = document.getElementById('taskForm');
   const cancelBtn = document.getElementById('cancelForm');
-  const form = document.getElementById('formMain');
+
+
+  taskPanel.style.display = "block";
+  taskForm.style.display = "none";
+
 
   createTaskBtn.addEventListener('click', () => {
     taskPanel.style.display = 'none';
@@ -17,14 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     taskPanel.style.display = 'block';
   });
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Aquí podrías agregar la tarea a la lista si quieres
-    taskForm.style.display = 'none';
-    taskPanel.style.display = 'block';
-  });
-
-  // === Modal Papelera ===
+  /* ================= PAPELERA ================= */
   const openTrashBtn = document.getElementById("openTrash");
   const trashModal = document.getElementById("trashModal");
   const closeTrashBtn = document.getElementById("closeTrash");
@@ -37,27 +34,45 @@ document.addEventListener('DOMContentLoaded', function () {
     trashModal.style.display = 'none';
   });
 
-  // === Eliminar tareas → Papelera ===
-  function attachDeleteButtons() {
-    const deleteButtons = document.querySelectorAll('.deleteTask');
+  /* ================= ELIMINAR ================= */
+  document.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("deleteTask")) return;
 
-    deleteButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        const taskDiv = e.target.closest('.task-item');
-        if (!taskDiv) return;
+    const taskDiv = e.target.closest(".task-item");
+    if (!taskDiv) return;
 
-        const clonedTask = taskDiv.cloneNode(true);
-        const trashContent = document.getElementById('trashContent');
+    const taskId = taskDiv.dataset.id;
+    tasks = tasks.filter(t => t.id !== taskId);
+    saveTasks();
 
-        const emptyMessage = trashContent.querySelector('p');
-        if (emptyMessage) emptyMessage.remove();
+    const trashContent = document.getElementById("trashContent");
+    const clone = taskDiv.cloneNode(true);
+    clone.querySelectorAll("button").forEach(b => b.remove());
 
-        trashContent.appendChild(clonedTask);
-        taskDiv.remove();
-      });
-    });
-  }
+    const empty = trashContent.querySelector("p");
+    if (empty) empty.remove();
 
-  attachDeleteButtons(); // inicial
+    trashContent.appendChild(clone);
+    taskDiv.remove();
+  });
+});
 
+/* ================= FILTRO ================= */
+
+function filtrarPorPrioridad(prioridad) {
+  document.querySelectorAll(".task-item").forEach(t => {
+    t.style.display = t.dataset.priority === prioridad ? "" : "none";
+  });
+}
+
+document.getElementById("comAlta").addEventListener("click", e => {
+  e.preventDefault(); filtrarPorPrioridad("1");
+});
+
+document.getElementById("comMedia").addEventListener("click", e => {
+  e.preventDefault(); filtrarPorPrioridad("2");
+});
+
+document.getElementById("comBaja").addEventListener("click", e => {
+  e.preventDefault(); filtrarPorPrioridad("3");
 });

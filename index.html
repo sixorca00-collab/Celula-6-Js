@@ -1,107 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TaskFlow SPA</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./style/style.css">
-  <style>
-    #taskForm { display: none; }
-    #trashModal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); justify-content:center; align-items:center; }
-    #trashModal > div { background: #fff; padding:20px; border-radius:8px; max-width:400px; width:90%; }
-  </style>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+  <link rel="stylesheet" href="./style/style.css" />
 </head>
+
 <body>
 
-<div class="container py-4" id="taskPanel">
-  <button id="createTask" class="btn btn-primary mb-4">+ Crear tarea</button>
+  <!-- HEADER -->
+  <header class="bg-dark text-white py-3 shadow-sm mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1 class="h4 mb-0">TaskFlow</h1>
+    </div>
+  </header>
 
-  <div class="row justify-content-center gap-3">
+  <!-- PANEL PRINCIPAL -->
+  <div class="container py-4" id="taskPanel">
 
-    <!-- Task list -->
-    <div class="col-md-3">
-      <div class="card h-100">
-        <div class="card-header text-center fw-bold">Task list</div>
-        <div class="card-body" id="taskList">
-          <div class="border rounded p-2 task-item">
-            <div class="d-flex gap-2 mb-2">
-              <p class="title">Tarea 1</p>
-              <button class="btn btn-sm btn-secondary editTask">✏️</button>
-              <button class="btn btn-sm btn-danger deleteTask">X</button>
-            </div>
-            <p class="mb-2">lorem</p>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-outline-dark moveLeft">&larr;</button>
-              <button class="btn btn-sm btn-outline-dark moveRight">&rarr;</button>
-            </div>
-          </div>
+    <!-- BOTONES -->
+    <div class="row align-items-center mb-4">
+      <div class="col-auto">
+        <button id="createTask" class="btn btn-primary px-4 py-2">
+          + Crear tarea
+        </button>
+      </div>
+
+      <div class="col-auto">
+        <div class="dropdown">
+          <button class="btn btn-success dropdown-toggle px-4 py-2"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Filtrar
+          </button>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" id="comAlta">Alta</a></li>
+            <li><a class="dropdown-item" href="#" id="comMedia">Media</a></li>
+            <li><a class="dropdown-item" href="#" id="comBaja">Baja</a></li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <!-- Doing -->
-    <div class="col-md-3">
-      <div class="card h-100">
-        <div class="card-header text-center fw-bold">Doing</div>
-        <div class="card-body" id="doing"></div>
+    <!-- TABLEROS -->
+    <div class="row justify-content-center gap-3">
+
+      <!-- TASK LIST -->
+      <div class="col-md-3 mb-4 min-height-350">
+        <div class="card h-100">
+          <div class="card-header text-center fw-bold">Task list</div>
+          <div class="card-body" id="taskList">
+
+            <!-- TAREA EJEMPLO -->
+            <div class="border rounded p-2 task-item task mb-2"
+                 data-state="pendiente"
+                 data-priority="1">
+
+              <div class="d-flex gap-3 mb-2 align-items-center">
+                <p class="title mb-0">Crear Tarea</p>
+                <button class="btn btn-sm btn-secondary editTask">✏️</button>
+                <button class="btn btn-sm btn-danger deleteTask">X</button>
+              </div>
+
+              <div class="accordion">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne">
+                      description
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                      <p>
+                        la tarea consiste en mostrar que el panel con SPA, DOM,
+                        Sesion, Validaciones funcione.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex gap-3 actions mt-3">
+                <button class="btn btn-sm btn-outline-dark moveLeft">&larr;</button>
+                <button class="btn btn-sm btn-outline-dark moveRight">&rarr;</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOING -->
+      <div class="col-md-3 mb-4 min-height-350">
+        <div class="card h-100">
+          <div class="card-header text-center fw-bold">Doing</div>
+          <div class="card-body" id="doing"></div>
+        </div>
+      </div>
+
+      <!-- DONE -->
+      <div class="col-md-3 mb-4 min-height-350">
+        <div class="card h-100">
+          <div class="card-header text-center fw-bold">Done</div>
+          <div class="card-body" id="done"></div>
+        </div>
       </div>
     </div>
 
-    <!-- Done -->
-    <div class="col-md-3">
-      <div class="card h-100">
-        <div class="card-header text-center fw-bold">Done</div>
-        <div class="card-body" id="done"></div>
+    <!-- PAPELERA -->
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-9 text-end">
+        <button class="btn btn-danger px-4 py-2" id="openTrash">
+          🗑️ Papelera
+        </button>
       </div>
     </div>
-
   </div>
 
-  <!-- Botón Papelera -->
-  <div class="row justify-content-center mt-3">
-    <div class="col-md-9 text-end">
-      <button class="btn btn-danger" id="openTrash">🗑️ Papelera</button>
+  <!-- FORMULARIO -->
+  <div class="container mt-4" id="taskForm">
+    <form id="formMain" class="createForm">
+      <div class="mb-3">
+        <label class="form-label">Nombre de la tarea:</label>
+        <input id="nameTask" type="text" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Descripción:</label>
+        <textarea id="description" class="form-control" rows="3" required></textarea>
+      </div>
+
+      <select id="selecPriority" class="form-select mb-3">
+        <option selected>Nivel de urgencia</option>
+        <option value="1">Alto</option>
+        <option value="2">Medio</option>
+        <option value="3">Bajo</option>
+      </select>
+
+      <button id="save" type="submit" class="btn btn-outline-danger me-2 mb-2">
+        Guardar
+      </button>
+      <button type="button" id="cancelForm" class="btn btn-secondary mb-2">
+        Cancelar
+      </button>
+    </form>
+  </div>
+
+  <!-- MODAL PAPELERA -->
+  <div id="trashModal">
+    <div>
+      <h5>Papelera</h5>
+      <div id="trashContent">
+        <p>No hay tareas eliminadas.</p>
+      </div>
+      <div class="text-end mt-3">
+        <button id="closeTrash" class="btn btn-outline-danger">Cerrar</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- FORMULARIO -->
-<div class="container mt-4" id="taskForm">
-  <form id="formMain" class="createForm">
-    <div class="mb-3">
-      <label class="form-label">Nombre del proyecto</label>
-      <input id="nameTask" type="text" class="form-control" placeholder="Ingrese el nombre de la nueva tarea">
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Descripción</label>
-      <textarea id="description" class="form-control" rows="3" placeholder="Empieza aquí..."></textarea>
-    </div>
-    <select id="selecPriority" class="form-select mb-3" aria-label="Nivel de urgencia">
-      <option selected>Nivel de urgencia</option>
-      <option value="1">Alto</option>
-      <option value="2">Medio</option>
-      <option value="3">Bajo</option>
-    </select>
-    <button id="save" type="submit" class="btn btn-outline-danger">Guardar</button>
-    <button type="button" id="cancelForm" class="btn btn-secondary">Cancelar</button>
-  </form>
-</div>
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/statusTask.js"></script>
+  <script src="./js/funcion.js"></script>
+  <script src="./js/task.js"></script>
 
-<!-- Modal Papelera -->
-<div id="trashModal">
-  <div>
-    <h5>Papelera</h5>
-    <div id="trashContent">
-      <p>No hay tareas eliminadas.</p>
-    </div>
-    <div class="text-end mt-3">
-      <button id="closeTrash" class="btn btn-outline-danger">Cerrar</button>
-    </div>
-  </div>
-</div>
-
-<script src="./js/funcion.js"></script>
-<script src="./js/task.js"></script>
 </body>
 </html>
