@@ -64,6 +64,26 @@
     cursor: pointer;
 }
 
+#formEdit{
+    margin: auto;
+    padding: 2rem;
+    border: none;
+    width: 50rem;
+    border-radius: 2rem;
+    height: 40%;
+    transition: all 0.6s;
+}
 
+.dropdown{
+    margin: 1rem;
+}
 
+#formEdit:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 0 10px rgba(16, 22, 22, 0.5);
+}
+
+.EditSelecPriority{
+    margin: 1rem;
+}
 

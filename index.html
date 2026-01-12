@@ -18,17 +18,17 @@
 <body>
 
   <!-- HEADER -->
- <header class="bg-dark text-white py-3 shadow-sm mb-4">
-  <div class="container d-flex justify-content-between align-items-center">
-    <h1 class="h4 mb-0">TaskFlow</h1>
+  <header class="bg-dark text-white py-3 shadow-sm mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1 class="h4 mb-0">TaskFlow</h1>
 
-    <!-- Logout al lado derecho -->
-    <div class="d-flex align-items-center" id="logout">
-      <i class="bi bi-box-arrow-right me-2"></i>
-      <span>Logout</span>
+      <!-- Logout al lado derecho -->
+      <div class="d-flex align-items-center" id="logout">
+        <i class="bi bi-box-arrow-right me-2"></i>
+        <span>Logout</span>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
   <!-- PANEL PRINCIPAL -->
   <div class="container py-4" id="taskPanel">
 
@@ -42,10 +42,8 @@
 
       <div class="col-auto">
         <div class="dropdown">
-          <button class="btn btn-success dropdown-toggle px-4 py-2"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false">
+          <button class="btn btn-success dropdown-toggle px-4 py-2" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
             Filtrar<i class="bi bi-funnel"></i>
           </button>
 
@@ -67,44 +65,6 @@
         <div class="card h-100">
           <div class="card-header text-center fw-bold">Task list</div>
           <div class="card-body" id="taskList">
-
-            <!-- TAREA EJEMPLO -->
-            <div class="border rounded p-2 task-item task mb-2"
-                 data-state="pendiente"
-                 data-priority="1">
-
-              <div class="d-flex gap-3 mb-2 align-items-center">
-                <p class="title mb-0">Crear Tarea</p>
-                <button class="btn btn-sm btn-secondary editTask"><i class="bi bi-pencil-square"></i></button>
-                <button class="btn btn-sm btn-danger deleteTask"><i class="bi bi-trash3"></i></button>
-              </div>
-
-              <div class="accordion">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button" type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne">
-                      description
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show">
-                    <div class="accordion-body">
-                      <p>
-                        la tarea consiste en mostrar que el panel con SPA, DOM,
-                        Sesion, Validaciones funcione.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="d-flex gap-3 actions mt-3">
-                <button class="btn btn-sm btn-outline-dark moveLeft">&larr;</button>
-                <button class="btn btn-sm btn-outline-dark moveRight">&rarr;</button>
-              </div>
-
-            </div>
           </div>
         </div>
       </div>
@@ -135,6 +95,36 @@
       </div>
     </div>
   </div>
+
+  <!-- Este apartado es area de editar -->
+
+<dialog id="formEdit">
+  <form id="editFormElement">
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Cambio de nombre</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" required>
+    </div>
+    
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Cambio de descripción</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+    </div>
+
+    <div class="EditSelecPriority">
+      <label>Prioridad</label>
+      <select id="EditSelecPriority" class="form-select">
+        <option value="1">Alto</option>
+        <option value="2">Medio</option>
+        <option value="3">Bajo</option>
+      </select>
+    </div>
+  </form>
+  
+  <button type="button" class="btn btn-danger">Guardar</button>
+  <button id="closeFormEdit" type="button" class="btn btn-light">Cancelar</button>
+</dialog>
+
+
 
   <!-- FORMULARIO -->
   <div class="container mt-4" id="taskForm">
@@ -185,4 +175,5 @@
   <script src="./js/task.js"></script>
 
 </body>
+
 </html>
