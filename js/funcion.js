@@ -6,7 +6,7 @@ const selecPriority = document.getElementById("selecPriority");
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let taskEditingId = null;
 
-/* ================= CAMBIO DE COLOR EN SELECT ================= */
+// ================= CAMBIO DE COLOR EN SELECT =================
 
 // Función para actualizar color del select
 function updateSelectColor(selectElement) {
