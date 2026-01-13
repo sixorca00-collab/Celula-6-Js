@@ -5,7 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const taskPanel = document.getElementById('taskPanel');
   const taskForm = document.getElementById('taskForm');
   const cancelBtn = document.getElementById('cancelForm');
-  const form = document.getElementById('formMain');
+
+
+  taskPanel.style.display = "block";
+  taskForm.style.display = "none";
+
 
   if (createTaskBtn && taskPanel && taskForm && cancelBtn && form) {
 

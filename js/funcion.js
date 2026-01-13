@@ -98,3 +98,9 @@ if (typeof attachDeleteButtons === "function") {
 
 }
 
+/* ================= CARGA INICIAL ================= */
+window.addEventListener("DOMContentLoaded", () => {
+  tasks.forEach(task => {
+    setTimeout(() => createTaskCard(task), 0);
+  });
+});
