@@ -1,179 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TaskFlow SPA</title>
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-
-  <link rel="stylesheet" href="./style/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./style/style.css">
+  <link rel="stylesheet" href="./style/login.css">
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header class="bg-dark text-white py-3 shadow-sm mb-4">
-    <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h4 mb-0">TaskFlow</h1>
-
-      <!-- Logout al lado derecho -->
-      <div class="d-flex align-items-center" id="logout">
-        <i class="bi bi-box-arrow-right me-2"></i>
-        <span>Logout</span>
-      </div>
-    </div>
-  </header>
-  <!-- PANEL PRINCIPAL -->
-  <div class="container py-4" id="taskPanel">
-
-    <!-- BOTONES -->
-    <div class="row align-items-center mb-4">
-      <div class="col-auto">
-        <button id="createTask" class="btn btn-primary px-4 py-2">
-          + Crear tarea
-        </button>
-      </div>
-
-      <div class="col-auto">
-        <div class="dropdown">
-          <button class="btn btn-success dropdown-toggle px-4 py-2" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Filtrar<i class="bi bi-funnel"></i>
-          </button>
-
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" id="comAlta">Alta</a></li>
-            <li><a class="dropdown-item" href="#" id="comMedia">Media</a></li>
-            <li><a class="dropdown-item" href="#" id="comBaja">Baja</a></li>
-            <li><a class="dropdown-item" href="#" id="comTodas">Todas</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- TABLEROS -->
-    <div class="row justify-content-center gap-3">
-
-      <!-- TASK LIST -->
-      <div class="col-md-3 mb-4 min-height-350">
-        <div class="card h-100">
-          <div class="card-header text-center fw-bold">Task list</div>
-          <div class="card-body" id="taskList">
-          </div>
-        </div>
-      </div>
-
-      <!-- DOING -->
-      <div class="col-md-3 mb-4 min-height-350">
-        <div class="card h-100">
-          <div class="card-header text-center fw-bold">Doing</div>
-          <div class="card-body" id="doing"></div>
-        </div>
-      </div>
-
-      <!-- DONE -->
-      <div class="col-md-3 mb-4 min-height-350">
-        <div class="card h-100">
-          <div class="card-header text-center fw-bold">Done</div>
-          <div class="card-body" id="done"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAPELERA -->
-    <div class="row justify-content-center mt-4">
-      <div class="col-md-9 text-end">
-        <button class="btn btn-danger px-4 py-2" id="openTrash">
-          <i class="bi bi-trash3">Papelera</i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Este apartado es area de editar -->
-
-<dialog id="formEdit">
-  <form id="editFormElement">
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Cambio de nombre</label>
-      <input type="text" class="form-control" id="exampleFormControlInput1" required>
-    </div>
     
-    <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Cambio de descripción</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
-    </div>
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="card p-4" style="width: 100%; max-width: 600px; width: 100%;max-height: 600px;">
+    <h3 class="text-center mb-3">Iniciar sesión</h3>
 
-    <div class="EditSelecPriority">
-      <label>Prioridad</label>
-      <select id="EditSelecPriority" class="form-select">
-        <option value="1">Alto</option>
-        <option value="2">Medio</option>
-        <option value="3">Bajo</option>
-      </select>
-    </div>
-  </form>
-  
-  <button type="button" class="btn btn-danger">Guardar</button>
-  <button id="closeFormEdit" type="button" class="btn btn-light">Cancelar</button>
-</dialog>
-
-
-
-  <!-- FORMULARIO -->
-  <div class="container mt-4" id="taskForm">
-    <form id="formMain" class="createForm">
+    <form id="loginForm">
       <div class="mb-3">
-        <label class="form-label">Nombre de la tarea:</label>
-        <input id="nameTask" type="text" class="form-control" required />
+        <label class="form-label">Usuario</label>
+        <input
+          type="text"
+          id="usuario"
+          class="form-control"
+          placeholder="Ingresa tu usuario"
+          required
+        >
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Descripción:</label>
-        <textarea id="description" class="form-control" rows="3" required></textarea>
+        <label class="form-label">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Ingresa tu contraseña"
+          required
+        >
       </div>
 
-      <select id="selecPriority" class="form-select mb-3" required>
-        <option selected>Nivel de urgencia</option>
-        <option value="1">Alto</option>
-        <option value="2">Medio</option>
-        <option value="3">Bajo</option>
-      </select>
-
-      <button id="save" type="submit" class="btn btn-outline-danger me-2 mb-2">
-        Guardar
-      </button>
-      <button type="button" id="cancelForm" class="btn btn-secondary mb-2">
-        Cancelar
-      </button>
+      <button type="submit" class="btn btn-primary w-100">Entrar</button>
     </form>
   </div>
+</div>
 
-  <!-- MODAL PAPELERA -->
-  <div id="trashModal">
-    <div>
-      <h5>Papelera</h5>
-      <div id="trashContent">
-        <p>No hay tareas eliminadas.</p>
-      </div>
-      <div class="text-end mt-3">
-        <button id="closeTrash" class="btn btn-outline-danger">Cerrar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./js/statusTask.js"></script>
-  <script src="./js/funcion.js"></script>
-  <script src="./js/task.js"></script>
-
+<script src="./js/login.js"></script>
 </body>
-
 </html>
