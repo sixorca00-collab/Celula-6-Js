@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Guardo la sesion con localstorage
         localStorage.setItem("usuarioLogueado", usuarioEncontrado.usuario);
-        window.location.href = "index.html";
+        window.location.href = "login.html";
       } else {
         alert("Usuario o contraseña incorrectos");
       }
